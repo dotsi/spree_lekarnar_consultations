@@ -1,0 +1,55 @@
+.row{"data-hook" => "admin_consultations_form_fields"}
+  .alpha.twelve.columns
+    %fieldset
+      %legend= t(:consultation)
+      = f.field_container :name do
+        = f.label :name, t(:name)
+        = f.text_field :name, :class => 'fullwidth'
+        = f.error_message_on :name
+
+      = f.field_container :description do
+        = f.label :description, t(:description)
+        = f.text_area :description, {:rows => 13, :class => 'fullwidth'}
+        = f.error_message_on :description
+.row
+  .alpha.six.columns
+    %fieldset
+      %legend= t(:consultant)
+      = f.field_container :consultant_name do
+        = f.label :consultant_name, t(:consultant_name)
+        = f.text_field :consultant_name, class: 'fullwidth'
+        = f.error_message_on :consultant_name
+
+      = f.field_container :consultant_email do
+        = f.label :consultant_email, t(:consultant_email)
+        = f.email_field :consultant_email, :class => 'fullwidth'
+        = f.error_message_on :consultant_email
+
+      = f.field_container :photo do
+        = f.label :photo
+        = f.file_field :photo, class: 'fullwidth'
+        = f.error_message_on :photo
+        - if f.object.photo?
+          = image_tag f.object.photo.url, style: 'margin-top: 1em'
+
+
+  .omega.six.columns
+    %fieldset
+      %legend= t(:contact_form)
+      = f.field_container :form_title do
+        = f.label :form_title
+        = f.text_field :form_title, class: 'fullwidth'
+        = f.error_message_on :form_title
+
+      = f.field_container :form_description do
+        = f.label :form_description
+        = f.text_area :form_description, {rows: 13, class: 'fullwidth'}
+        = f.error_message_on :form_description
+.row
+  .alpha.six.columns
+    %fieldset
+      %legend Blagovna znamka
+
+  .omega.six.columns
+    %fieldset
+      %legend Izdelki

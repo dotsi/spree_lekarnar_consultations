@@ -1,21 +1,23 @@
-SpreeLekarnarConsultations
-==========================
+Spree Lekarnar Consultations
+============================
 
 Introduction goes here.
 
+Installation
+==============
 
-Example
-=======
+Add gem to gemfile
 
-Example goes here.
+  gem 'spree_lekarnar_consultations'
 
-Testing
--------
+Copy over migrations and migrate the database
 
-Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
+  rails g spree_lekarnar_consultations:install
 
-    $ bundle
-    $ bundle exec rake test_app
-    $ bundle exec rspec spec
+If you use Rich text editor you might want to enable it for fields with the following id
+  
+  consultation_description consultation_form_description
 
-Copyright (c) 2013 [name of extension creator], released under the New BSD License
+
+
+Copyright (c) 2013 Lenart Rudel, released under the New BSD License

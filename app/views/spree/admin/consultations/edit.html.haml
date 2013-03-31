@@ -1,4 +1,6 @@
 = render :partial => 'spree/admin/shared/product_sub_menu'
+- # Include template for autocomplete fields
+= render :partial => "spree/admin/variants/autocomplete", :formats => [:js]
 
 - content_for :page_title do
   = t(:editing_consultation)
@@ -12,6 +14,7 @@
 = render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation }
 
 = form_for [:admin, @consultation] do |f|
-  %fieldset
-    = render :partial => 'form', :locals => { :f => f }
-    = render :partial => 'spree/admin/shared/edit_resource_links'
+  = render :partial => 'form', :locals => { :f => f }
+  = render :partial => 'spree/admin/shared/edit_resource_links'
+
+%div{style: 'margin-bottom: 10em'}

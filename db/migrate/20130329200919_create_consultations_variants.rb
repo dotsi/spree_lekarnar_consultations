@@ -1,6 +1,8 @@
 class CreateConsultationsVariants < ActiveRecord::Migration
   def up
-    create_table :spree_consultations_variants, :id => false do |t|
+    # We used create_table with :id => false but put it back
+    # because it was easier to manage (delete) relations with IDs
+    create_table :spree_consultations_variants do |t|
       t.references :consultation
       t.references :variant
     end

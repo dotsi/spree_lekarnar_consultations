@@ -3,8 +3,6 @@ class Spree::Consultation < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :form_title, :form_description
 
-  # validates_attachment_presence :photo, if: :has_consultant?
-
   attr_accessible :taxon_id, :photo, :consultant_email, :consultant_name, :description, :form_description, :form_title, :name
 
   has_attached_file :photo,
@@ -19,11 +17,5 @@ class Spree::Consultation < ActiveRecord::Base
   has_many :variants, class_name: "Spree::Variant", through: :consultation_classifications
 
   belongs_to :taxonomy, class_name: 'Spree::Taxon', foreign_key: 'taxon_id'
-
-private
-
-  # def has_consultant
-  #   !consultant_name.blank?
-  # end
 
 end

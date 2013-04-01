@@ -4,9 +4,9 @@
 = # render :partial => "spree/admin/shared/configuration_menu"
 
 - content_for :page_title do
-  = @consultation.name
-  %i.icon-arrow-right
-  Related products
+  Related products for
+  = surround '"' do
+    = @consultation.name
 
 - content_for :page_actions do
   %li
@@ -35,7 +35,6 @@
         %th Name
         %th Actions
     %tbody
-      - #raise @classifications.inspect
       = render partial: 'spree/admin/consultation_classifications/classification', collection: @classifications
 
 

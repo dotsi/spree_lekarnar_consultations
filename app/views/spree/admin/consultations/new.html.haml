@@ -5,6 +5,9 @@
 - content_for :page_title do
   = t(:new_consultation)
 
+- content_for :sidebar do
+  = render 'spree/admin/shared/sidebar_menu'
+
 = render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation }
 
 = form_for [:admin, @consultation] do |f|

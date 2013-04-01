@@ -55,9 +55,9 @@
         = f.label :taxon_id
         %br
         = # f.hidden_field :taxon_id, id: 'consultation_taxon_id', class: 'fullwidth'
-        = f.select :taxon_id, @taxons.collect {|t| [t.pretty_name, t.id]}, {}, { class: 'fullwidth' }
-
-      %p
-        Če želiš določiti posamezne produkte, pojdi na
-        = link_to "Related products", admin_consultation_classifications_path(@consultation)
-        \.
+        = f.select :taxon_id, @taxons.collect {|t| [t.pretty_name, t.id]}, { include_blank: true }, class: 'fullwidth'
+      - unless @consultation.new_record?
+        %p
+          Če želiš določiti posamezne produkte, pojdi na
+          = link_to "Related products", admin_consultation_classifications_path(@consultation)
+          \.

@@ -15,25 +15,34 @@
 
     %colgroup
       %col{:style => "width: 20%;"}
+      %col{:style => "width: 17%;"}
+      %col{:style => "width: 17%;"}
       %col{:style => "width: 38%;"}
-      %col{:style => "width: 17%;"}
-      %col{:style => "width: 17%;"}
       %col{:style => "width: 8%;"}
     %thead
       %tr{"data-hook" => "admin_products_index_headers"}
         %th= t(:name)
-        %th= t(:description)
         %th= t(:consultant_name)
         %th= t(:consultant_email)
+        %th= t(:consultation_area)
         %th.actions
 
     %tbody
       - @consultations.each do |consultation|
         %tr{ class: cycle('odd', 'even') }
-          %td.align-center= link_to consultation.name, spree.edit_admin_consultation_path(consultation)
-          %td= truncate consultation.description
+          %td.align-center= link_to consultation.name, edit_admin_consultation_path(consultation)
           %td.align-center= consultation.consultant_name
           %td.align-center= mail_to consultation.consultant_email
+          %td
+            - if consultation.taxonomy
+              %strong Oddelek:
+              = consultation.taxonomy.pretty_name
+              %br
+            - if consultation.variants.any?
+              %strong Izdelki:
+              = consultation.variants.collect {|v| v.name }.join(", ")
+              %br
+
           %td.actions{"data-hook" => "admin_products_index_row_actions"}
             = link_to_edit consultation, no_text: true, class: 'edit'
             = link_to_delete consultation, no_text: true

@@ -1,6 +1,5 @@
 = render :partial => 'spree/admin/shared/product_sub_menu'
-- # Include template for autocomplete fields
-= render :partial => "spree/admin/variants/autocomplete", :formats => [:js]
+= # render :partial => "spree/admin/shared/configuration_menu"
 
 - content_for :page_title do
   = t(:editing_consultation)
@@ -9,12 +8,14 @@
 
 - content_for :page_actions do
   %li
-    = button_link_to t(:back_to_suppliers_list), spree.admin_suppliers_url, :icon => 'icon-arrow-left'
+    = button_link_to t(:back_to_consultations_list), admin_consultations_url, :icon => 'icon-arrow-left'
+    = button_link_to t(:new_consultation), new_object_url, { :remote => false, :icon => 'icon-plus', :id => 'admin_new_consultation' }
 
+- content_for :sidebar do
+  = render 'spree/admin/shared/sidebar_menu'
+  
 = render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation }
 
 = form_for [:admin, @consultation] do |f|
   = render :partial => 'form', :locals => { :f => f }
   = render :partial => 'spree/admin/shared/edit_resource_links'
-
-%div{style: 'margin-bottom: 10em'}

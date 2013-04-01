@@ -1,4 +1,4 @@
-.row{"data-hook" => "admin_consultations_form_fields"}
+.row
   .alpha.twelve.columns
     %fieldset
       %legend= t(:consultation)
@@ -47,7 +47,7 @@
         = f.error_message_on :form_description
 
 
-.row#consultations_areas
+.row
   .six.columns.alpha
     %fieldset
       %legend Blagovna znamka
@@ -57,21 +57,7 @@
         = # f.hidden_field :taxon_id, id: 'consultation_taxon_id', class: 'fullwidth'
         = f.select :taxon_id, @taxons.collect {|t| [t.pretty_name, t.id]}, {}, { class: 'fullwidth' }
 
-  .six.columns.omega
-    %fieldset
-      %legend Izdelki
-      %div{:'data-hook' => 'add_product_name'}
-        = f.field_container :variant_id do
-          = label_tag :variant_id, t(:name_or_sku)
-          = hidden_field_tag :variant_id, "", class: "variant_autocomplete fullwidth"
-          .options_placeholder
-      %div.actions{:'data-hook' => 'add_product_to_consultation_button'}
-        = link_to_with_icon 'icon-plus', t(:add), "#", :class => 'button fullwidth'
-
-      %div{style: 'margin-top: 4em'}
-        %table{:'data-hook' => 'consultation_variants_table'}
-          %thead
-            %tr
-              %th Name
-              %th Actions
-          %tbody
+      %p
+        Če želiš določiti posamezne produkte, pojdi na
+        = link_to "Related products", admin_consultation_classifications_path(@consultation)
+        \.

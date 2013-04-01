@@ -1,0 +1,10 @@
+- current ||= ''
+%h5.sidebar-title
+  %span Consultations
+
+%nav.menu
+  %ul
+    %li{class: ('active' if current.blank?) }
+      = link_to_with_icon 'icon-edit', "Consultation", edit_admin_consultation_path(@consultation)
+    %li{class: ('active' if current == 'relations') }
+      = link_to_with_icon 'icon-sitemap', "Related products", admin_consultation_classifications_path(@consultation)

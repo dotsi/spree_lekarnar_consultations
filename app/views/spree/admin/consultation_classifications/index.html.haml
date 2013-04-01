@@ -1,0 +1,49 @@
+= render :partial => 'spree/admin/shared/product_sub_menu'
+- # Include template for autocomplete fields
+= render :partial => "spree/admin/variants/autocomplete", :formats => [:js]
+= # render :partial => "spree/admin/shared/configuration_menu"
+
+- content_for :page_title do
+  = @consultation.name
+  %i.icon-arrow-right
+  Related products
+
+- content_for :page_actions do
+  %li
+    = button_link_to "Back to Consultations", admin_consultations_path, :icon => 'icon-arrow-left'
+
+- content_for :sidebar do
+  = render 'spree/admin/shared/sidebar_menu', current: 'relations'
+
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation }
+
+
+= form_for [:admin, @consultation, @classification] do |f|
+  .ten.columns.alpha
+    = f.field_container :variant_id do
+      = f.label :variant_id, t(:name_or_sku)
+      = f.hidden_field :variant_id, class: "variant_autocomplete fullwidth"
+
+  .two.columns.omega
+    %div.actions{:'data-hook' => 'add_variant_to_consultation_button', style: 'margin-top: 2em'}
+      = link_to_with_icon 'icon-plus', t(:add), "#", :class => 'button fullwidth'
+
+.twelve.columns.alpha.omega
+  %table#consultation_variants_table{:'data-hook' => 'consultation_variants_table'}
+    %thead
+      %tr
+        %th Name
+        %th Actions
+    %tbody
+      - #raise @classifications.inspect
+      = render partial: 'spree/admin/consultation_classifications/classification', collection: @classifications
+
+
+
+
+
+
+%div{style: 'margin-bottom: 10em'}
+
+
+

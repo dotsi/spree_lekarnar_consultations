@@ -17,8 +17,7 @@
 
 = render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation }
 
-
-= form_for [:admin, @consultation, @classification] do |f|
+= form_for [:admin, @consultation, @classification], url: new_admin_consultation_classification_path do |f|
   .ten.columns.alpha
     = f.field_container :variant_id do
       = f.label :variant_id, t(:name_or_sku)

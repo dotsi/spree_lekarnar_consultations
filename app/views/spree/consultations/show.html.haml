@@ -1,0 +1,32 @@
+- content_for :page_title do
+  = @consultation.name
+
+- content_for :sidebar do
+  - if @consultations.any?
+    %h5 Lekarnar svetuje
+    %ul
+    - @consultations.each do |c|
+      %li= link_to c.name, c
+
+%h1= yield(:page_title)
+
+= @consultation.description.html_safe
+
+- if @consultation.consultant_name?
+  = content_tag_for :div, @consultation do
+    %div.image{style: 'float: left'}
+      = image_tag @consultation.photo.url
+    %div
+      %strong
+        = @consultation.consultant_name
+      %br
+      = mail_to @consultation.consultant_email
+    %br{style: 'clear:both'}
+
+%h2= @consultation.form_title
+
+- if @consultation.form_description?
+  = @consultation.form_description.html_safe
+
+= form_for [@consultation, @consultation_request] do |f|
+  = render 'spree/consultation_requests/form', f: f

@@ -1,0 +1,6 @@
+%h1 Sporočilo svetovalcu
+
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @consultation_request }
+
+= form_for [@consultation, @consultation_request] do |f|
+  = render 'form', f: f

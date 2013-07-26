@@ -3,6 +3,8 @@ class Spree::Consultation < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :form_title, :form_description
 
+  make_permalink :field => :name
+
   attr_accessible :taxon_id, :photo, :consultant_email, :consultant_name, :description, :form_description, :form_title, :name
 
   has_attached_file :photo,
